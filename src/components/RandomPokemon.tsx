@@ -99,15 +99,18 @@ interface Some_Icons {
 }
 
 export default function RandomPokemon() {
-  const [pokemon, setPokemon] = useState<RPokemon>();
+  const [pokemon, setPokemon] = useState<RPokemon>(); //saving data in state pokemon
 
   const getRandomPokemon = async () => {
     try {
+      const maxCount = await axios.get(
+        'https://pokeapi.co/api/v2/pokemon?limit=1&offset=0'
+      ); //fetching the max counter of objects returned by the endpoint
       const response = await axios.get(
         `https://pokeapi.co/api/v2/pokemon?limit=1&offset=${Math.floor(
-          Math.random() * (1154 - 1)
+          Math.random() * (maxCount.data.count - 1)
         )}`
-      );
+      ); //fethching the random pokemon
       const resPokemon = response.data.results[0].url;
 
       const finalPoke = await axios.get(resPokemon);
@@ -133,32 +136,259 @@ export default function RandomPokemon() {
   const handleClick = () => {
     getRandomPokemon();
   };
+  //Using Transperent URL for showing img with src === null
+
+  const transperentUrl =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
+  // onError = {e => e.target.style.display = 'none'} - Using this to prevent errors 404
 
   return (
     <>
-      <div className="test">
-        {!pokemon ? (
-          <h2>Loading</h2>
-        ) : (
-          <div>
-            <div>
-              <button onClick={() => handleClick()} className="pokemon_btn">
-                <h3 className="text_btn">Get Random Pokemon</h3>
-              </button>
+      {!pokemon ? (
+        <h2>Loading</h2>
+      ) : (
+        <div className="pokemon-card">
+          <div className="btn_container">
+            <button onClick={() => handleClick()} className="pokemon_btn">
+              <h3 className="text_btn">Get Random Pokemon</h3>
+            </button>
+          </div>
+          <div className="pokemon-card_header">
+            <p className="pokemon_id">{pokemon.id}</p>
+            <h2 className="pokemon_name">{pokemon.name.toUpperCase()}</h2>
+          </div>
+          <div className="img_box">
+            <div className="sprites_img">
+              <img
+                src={pokemon.sprites.back_default || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.back_female || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.back_shiny || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.back_shiny_female || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.front_default || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.front_female || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.front_shiny || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.front_shiny_female || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
             </div>
-            <div className="pokemon-card">
-              <p className="pokemon_id">#{pokemon.id}</p>
-              <h2 className="pokemon_name">{pokemon.name.toUpperCase()}</h2>
+            <div className="sprites_img">
+              <img
+                src={
+                  pokemon.sprites.other.dream_world.front_default ||
+                  transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.other.dream_world.front_female ||
+                  transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.other.home.front_default || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.other.home.front_female || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={pokemon.sprites.other.home.front_shiny || transperentUrl}
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.other.home.front_shiny_female ||
+                  transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.other['official-artwork'].front_default ||
+                  transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
             </div>
-            <div className="parent">
-              <div className="div1"> </div>
-              <div className="div2"> </div>
-              <div className="div3"> </div>
-              <div className="div4"> </div>
+            <div className="sprites_img">
+              <img
+                src={
+                  pokemon.sprites.versions['generation-vi'][
+                    'omegaruby-alphasapphire'
+                  ].front_default || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.versions['generation-vi'][
+                    'omegaruby-alphasapphire'
+                  ].front_female || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.versions['generation-vi'][
+                    'omegaruby-alphasapphire'
+                  ].front_shiny || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.versions['generation-vi'][
+                    'omegaruby-alphasapphire'
+                  ].front_shiny || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.versions['generation-vi'][
+                    'omegaruby-alphasapphire'
+                  ].front_shiny_female || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+            </div>
+            <div className="sprites_img">
+              <img
+                src={
+                  pokemon.sprites.versions['generation-vii'].icons
+                    .front_default || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.versions['generation-vii'].icons
+                    .front_female || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+            </div>
+            <div className="sprites_img">
+              <img
+                src={
+                  pokemon.sprites.versions['generation-viii'].icons
+                    .front_default || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />
+              <img
+                src={
+                  pokemon.sprites.versions['generation-viii'].icons
+                    .front_female || transperentUrl
+                }
+                onError={(e) =>
+                  ((e.target as HTMLImageElement).style.display = 'none')
+                }
+                alt=""
+              />{' '}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }
+
+/*Thank you a lot for a such an amazing opportunity to practice my skills and make my first steps in the TypeScript universe. 
+I really enjoyed working on this task. 
+
+*/

@@ -1,14 +1,17 @@
 body {
-  min-height: 100vh;
+  height: 100vh;
   background: #f4a261;
-  margin: 50px;
+  margin: auto 0;
 }
 
 button {
   text-decoration: none;
   font-family: sans-serif;
   font-weight: bold;
-  margin-top: 2rem;
+}
+
+.btn_container {
+  margin-top: 75px;
 }
 
 .text_btn {
@@ -38,27 +41,61 @@ button {
   font-size: 3em;
 }
 
-.pokemon-card {
+.pokemon-card_header {
   margin-top: 100px;
 }
 
-.parent {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+.img_box {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.div1 {
-  grid-area: 1 / 1 / 2 / 2;
+img {
+  max-height: 200px;
+  max-width: 220px;
+  margin: 0;
+  padding: 0;
+}
+
+.sprites_img {
+  display: flex;
+  max-width: 1200px;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 .div2 {
-  grid-area: 1 / 2 / 2 / 3;
+  display: flex;
+  max-width: 1200px;
+  align-items: center;
+  border: 2px solid #264653;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .div3 {
-  grid-area: 2 / 1 / 3 / 2;
+  display: flex;
+  max-width: 1200px;
+  align-items: center;
+  border: 2px solid #264653;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .div4 {
-  grid-area: 2 / 2 / 3 / 3;
+  display: flex;
+  max-width: 1200px;
+  align-items: center;
+  border: 2px solid #264653;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.div5 {
+  display: flex;
+  max-width: 1200px;
+  align-items: center;
+  border: 2px solid #264653;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

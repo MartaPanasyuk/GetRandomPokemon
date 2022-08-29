@@ -1,4 +1,4 @@
-# Front-end assignment
+# Get Random Pokemon
 
 ————————————————
 
@@ -8,7 +8,7 @@
 
 The output of this assignment will be a small site containing a component that displays a random Pokémon.
 
-The data can be fetched from https://pokeapi.co using Rest, bonus points for using GraphQL.
+The data can be fetched from https://pokeapi.com
 
 You have freedom in your approach of styling. Same for the build tooling (Create React App, NextJS, Vite)
 

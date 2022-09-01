@@ -388,7 +388,3 @@ export default function RandomPokemon() {
   );
 }
 
-/*Thank you a lot for a such an amazing opportunity to practice my skills and make my first steps in the TypeScript universe. 
-I really enjoyed working on this task. 
-
-*/
